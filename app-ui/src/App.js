@@ -57,7 +57,11 @@ function App() {
 
   const [io, setIo] = useState(null);
   const [messages, setMessages] = useState(initialMessage);
-  const [chatMessage, setChatMessage] = useState({ name: "", message: "" });
+  const [chatMessage, setChatMessage] = useState({
+    name: "",
+    message: "",
+    submitted: false
+  });
 
   const handleSelectRoom = name => {
     setSelectedRoom(name);
@@ -82,7 +86,14 @@ function App() {
   };
 
   const handleSendMessage = () => {
-    if (chatMessage.message !== "") {
+    if (!chatMessage.submitted) {
+      setChatMessage({
+        ...chatMessage,
+        submitted: true
+      });
+    }
+
+    if (chatMessage.message !== "" && chatMessage.name !== "") {
       io.emit("chat", selectedRoom, chatMessage);
       setChatMessage({ ...chatMessage, message: "" });
     }
@@ -143,6 +154,7 @@ function App() {
             fullWidth
             value={chatMessage.name}
             onChange={handleChangeChatMessage("name")}
+            error={chatMessage.submitted && chatMessage.name === ""}
           />
         </div>
         <div className={classes.margin}>
@@ -153,6 +165,7 @@ function App() {
             value={chatMessage.message}
             onChange={handleChangeChatMessage("message")}
             onKeyUp={handleKeyUp(13, handleSendMessage)}
+            error={chatMessage.submitted && chatMessage.message === ""}
           />
         </div>
         <div className={classes.margin}>
