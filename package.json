@@ -2,8 +2,8 @@
   "name": "react-express-socketio",
   "version": "1.0.0",
   "scripts": {
-    "start": "npm run build && node ./server/index.js",
-    "build": "cd app-ui/ && npm install && npm run build:prod"
+    "start": "npm run build && cd server/ && npm start",
+    "build": "cd app-ui/ && npm install && npm run build"
   },
   "repository": {
     "type": "git",
