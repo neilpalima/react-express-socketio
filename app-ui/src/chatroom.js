@@ -10,7 +10,7 @@ import {
   Paper
 } from "@material-ui/core";
 
-const endpoint = `http://localhost:${process.env.PORT || 8080}`;
+const endpoint = process.env.NODE_ENV !== 'development' ? 'https://shhhh-chat.herokuapp.com/' : `http://localhost:${process.env.PORT || 8080}`;
 const initialMessage = [{ name: "Admin", message: "Welcome to the chatroom!" }];
 
 const useStyles = makeStyles(theme => ({
