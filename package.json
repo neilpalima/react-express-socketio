@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm-run-all clean transpile build:ui",
     "server": "node -r dotenv/config ./dist/server.js",
-    "start": "npm-run-all build server",
+    "start": "npm run build && npm run server",
     "build:ui": "cd app-ui/ && npm i && npm run build",
     "transpile": "babel server.js --out-dir dist",
     "clean": "rimraf dist"
