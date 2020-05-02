@@ -2,7 +2,7 @@
   "name": "socket",
   "version": "1.0.0",
   "description": "Socket test",
-  "main": "index.js",
+  "main": "./dist/server.js",
   "scripts": {
     "build": "npm-run-all clean transpile build:ui",
     "server": "node -r dotenv/config ./dist/server.js",
