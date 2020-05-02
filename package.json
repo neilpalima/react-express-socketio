@@ -6,10 +6,11 @@
   "scripts": {
     "build": "npm-run-all clean transpile build:ui",
     "server": "node -r dotenv/config ./dist/server.js",
-    "start": "npm run build && npm run server",
+    "start": "npm run server",
     "build:ui": "cd app-ui/ && npm i && npm run build",
     "transpile": "babel server.js --out-dir dist",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "postinstall": "npm run build"
   },
   "author": "",
   "license": "ISC",
