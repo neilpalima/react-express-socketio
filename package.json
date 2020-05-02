@@ -1,18 +1,35 @@
 {
-  "name": "react-express-socketio",
+  "name": "socket",
   "version": "1.0.0",
+  "description": "Socket test",
+  "main": "index.js",
   "scripts": {
-    "start": "npm run build && cd server/ && npm i && npm start",
-    "build": "cd app-ui/ && npm install && npm run build"
+    "build": "npm-run-all clean transpile build:ui",
+    "server": "node -r dotenv/config ./dist/server.js",
+    "start": "npm-run-all build server",
+    "build:ui": "cd app-ui/ && npm i && npm run build",
+    "transpile": "babel server.js --out-dir dist",
+    "clean": "rimraf dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/neilpalima/react-express-socketio.git"
-  },
-  "author": "Neil Palima <neiljanpalima@gmail.com>",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/neilpalima/react-express-socketio/issues"
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "socket.io": "^2.3.0",
+    "socket.io-redis": "^5.2.0",
+    "winston": "^3.2.1"
   },
-  "homepage": "https://github.com/neilpalima/react-express-socketio#readme"
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
 }
